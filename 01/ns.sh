@@ -1,0 +1,1 @@
+k get ns > /opt/course/1/namespaces

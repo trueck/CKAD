@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+...
+labels:
+  app: manager-api-svc
+name: manager-api-svc
+namespace: mars
+...
+spec:
+  clusterIP: 10.3.244.121
+  ports:
+    - name: 4444-80
+      port: 4444
+      protocol: TCP
+      targetPort: 80
+  selector:
+    #id: manager-api-deployment # wrong selector, needs to point to pod!
+    id: manager-api-pod
+  sessionAffinity: None
+  type: ClusterIP
