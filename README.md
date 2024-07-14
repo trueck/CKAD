@@ -254,3 +254,16 @@ Management of EarthAG recorded that one of their Services stopped working. Dirk,
 
 Find the Service, fix any issues and confirm it's working again. Write the reason of the error into file /opt/course/p3/ticket-654.txt so Dirk knows what the issue was.
 
+
+
+# run a tmp pod of busybox to execute wget to test
+```shell
+k run tmppod --image=busybox -n ckad --rm -it --restart=Never  -- wget 10.244.1.2:80
+```
+
+# view and set default namespace
+k config view|grep namespace
+k config set-context --current --namespace business
+
+# output data from container to local
+k exec -it nginx -n api-access -- cat /var/run/secrets/kubernetes.io/serviceaccount/token > token.txt
