@@ -262,8 +262,27 @@ k run tmppod --image=busybox -n ckad --rm -it --restart=Never  -- wget 10.244.1.
 ```
 
 # view and set default namespace
-k config view|grep namespace
+```
+k config view | grep namespace
 k config set-context --current --namespace business
-
+```
 # output data from container to local
+```
 k exec -it nginx -n api-access -- cat /var/run/secrets/kubernetes.io/serviceaccount/token > token.txt
+```
+
+# run a container with docker
+```
+docker run -d -p 8080:8080 java-hello-world:1.0.0
+```
+
+# run a pod with env and labels
+```
+kubectl run hazelcast --image=hazelcast/hazelcast --restart=Never \
+--port=5701 --env="DNS_DOMAIN=cluster" --labels="app=hazelcast,env=prod"
+```
+
+# connect to container and run commands interactively
+```
+kubectl exec -it hazelcast -- /bin/sh
+```
